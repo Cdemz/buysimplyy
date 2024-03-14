@@ -36,7 +36,10 @@
 
           <div class="input-line flex w-full h-10 border-gray-300 border hover:border-2 rounded-md overflow-hidden">
             <input class="outline-none w-full h-full px-2 " type="password" name="" id="" placeholder="Enter your password">
-            <div class="h-10 w-10 pb-10 rounded-r-md right-0 bottom-1 bg-resd-500 shrink-0 border-l border-gray-300">x</div>
+            <div class="h-10 w-10 flex pb-10 shrink-0 border-l border-gray-300 relative active:bg-gray-300" @click="showPassword = !showPassword">
+              <img class="h-4 w-4 m-auto mt-3" src="~@/assets/open.png" alt="eyes open" v-if="showPassword">
+              <img class="h-4 w-4 m-auto mt-3" src="~@/assets/closed.png" alt="eyes open" v-else>
+            </div>
           </div>
         </div>
         <!-- remember and forget -->
@@ -65,7 +68,7 @@ export default {
   data: () => ({
     email: '',
     password: '',
-    rememberMe: false,
+    showPassword: false,
   }),
 };
 </script>
