@@ -29,18 +29,18 @@
         <div class="inputWrapper flex w-full flex-col relative pt-4">
           <span class="relative">Email Address <small class="text-lg text-[#FF0000]">*</small></span>
           <input class="border hover:border-2 border-gray-300 outline-none rounded-md p-2 my-1" type="email" name="" id="" placeholder="Enter your email" v-model="email">
+          <span class="error text-xs text-red-500" v-if="emailError">{{ emailError }}</span>
         </div>
         <div class="inputWrapper flex w-full flex-col relative pt-4">
           <span class="relative">Password  <small class="text-lg text-[#FF0000]">*</small></span>
-         
-
           <div class="input-line flex w-full h-10 border-gray-300 border hover:border-2 rounded-md overflow-hidden">
-            <input class="outline-none w-full h-full px-2 " type="password" name="" id="" placeholder="Enter your password" v-model="password">
+            <input class="outline-none w-full h-full px-2 " :type="showPassword? 'text' : 'password'" name="" id="" placeholder="Enter your password" v-model="password">
             <div class="h-10 w-10 flex pb-10 shrink-0 border-l border-gray-300 relative active:bg-gray-300" @click="showPassword = !showPassword">
               <img class="h-4 w-4 m-auto mt-3" src="~@/assets/open.png" alt="eyes open" v-if="showPassword">
               <img class="h-4 w-4 m-auto mt-3" src="~@/assets/closed.png" alt="eyes open" v-else>
             </div>
           </div>
+          <span class="error text-xs text-red-500" v-if="passwordError">{{ passwordError }}</span>
         </div>
         <!-- remember and forget -->
         <div class="w-full mt-1 flex justify-between">
@@ -67,16 +67,36 @@ export default {
   },
   data: () => ({
     email: '',
+    emailError: '',
     password: '',
+    passwordError: '',
     showPassword: false,
   }),
   methods: {
     validate(){
       const { email, password } = this;
       // validate with regex:
-      
+      if(!/^.+@.+\..+$/gi.test(email)){
+        this.emailError = 'Please enter a valid email address.';
+      }
+      const hasSpecialChars = /[^A-z]/gi.test(password);
+      const hasUpperCase = /[A-Z]/g.test(password);
+      const hasLowerCase = /[a-z]/g.test(password);
+      if(!(password.length>=8)){
+        this.passwordError = 'Your password must be at least 8 digits long.';
+      } else if (!(hasSpecialChars && hasUpperCase && hasLowerCase)){
+        this.passwordError = 'Your password must contain uppercase, lowercase and special characters.'
+      }
     }
   },
+  watch: {
+    password(){
+      this.passwordError = '';
+    },
+    email(){
+      this.emailError = '';
+    }
+  }
 };
 </script>
 
