@@ -50,7 +50,7 @@
           <a href="#" class="text-[#622081]">Forgot Password?</a>
         </div>
         <!-- submission -->
-        <button class="w-full text-center text-white bg-[#622081] active:bg-white active:text-[#622081] rounded-md py-2 mt-6 font-bold" @click="validate()">Sign In</button>
+        <button class="button w-full text-center rounded-md py-2 mt-6 font-bold" @click="validate()">Sign In</button>
         <div class="w-full text-center mt-2 text-[#555]">Don't have an account? <a href="#" class="text-[#622081] font-bold">Sign up</a></div>
       </div>
     </div>
@@ -72,8 +72,9 @@ export default {
   }),
   methods: {
     validate(){
-      console.log(this.email)
-      console.log(this.password)
+      const { email, password } = this;
+      // validate with regex:
+      
     }
   },
 };
