@@ -28,14 +28,14 @@
         <!-- inputs -->
         <div class="inputWrapper flex w-full flex-col relative pt-4">
           <span class="relative">Email Address <small class="text-lg text-[#FF0000]">*</small></span>
-          <input class="border hover:border-2 border-gray-300 outline-none rounded-md p-2 my-1" type="email" name="" id="" placeholder="Enter your email">
+          <input class="border hover:border-2 border-gray-300 outline-none rounded-md p-2 my-1" type="email" name="" id="" placeholder="Enter your email" v-model="email">
         </div>
         <div class="inputWrapper flex w-full flex-col relative pt-4">
           <span class="relative">Password  <small class="text-lg text-[#FF0000]">*</small></span>
          
 
           <div class="input-line flex w-full h-10 border-gray-300 border hover:border-2 rounded-md overflow-hidden">
-            <input class="outline-none w-full h-full px-2 " type="password" name="" id="" placeholder="Enter your password">
+            <input class="outline-none w-full h-full px-2 " type="password" name="" id="" placeholder="Enter your password" v-model="password">
             <div class="h-10 w-10 flex pb-10 shrink-0 border-l border-gray-300 relative active:bg-gray-300" @click="showPassword = !showPassword">
               <img class="h-4 w-4 m-auto mt-3" src="~@/assets/open.png" alt="eyes open" v-if="showPassword">
               <img class="h-4 w-4 m-auto mt-3" src="~@/assets/closed.png" alt="eyes open" v-else>
@@ -50,7 +50,7 @@
           <a href="#" class="text-[#622081]">Forgot Password?</a>
         </div>
         <!-- submission -->
-        <button class="w-full text-center text-white bg-[#622081] active:bg-white active:text-[#622081] rounded-md py-2 mt-6 font-bold">Sign In</button>
+        <button class="w-full text-center text-white bg-[#622081] active:bg-white active:text-[#622081] rounded-md py-2 mt-6 font-bold" @click="validate()">Sign In</button>
         <div class="w-full text-center mt-2 text-[#555]">Don't have an account? <a href="#" class="text-[#622081] font-bold">Sign up</a></div>
       </div>
     </div>
@@ -70,6 +70,12 @@ export default {
     password: '',
     showPassword: false,
   }),
+  methods: {
+    validate(){
+      console.log(this.email)
+      console.log(this.password)
+    }
+  },
 };
 </script>
 
